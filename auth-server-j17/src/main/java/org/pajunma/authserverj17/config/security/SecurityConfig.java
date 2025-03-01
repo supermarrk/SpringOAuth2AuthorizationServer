@@ -44,10 +44,6 @@ public class SecurityConfig {
 
     @Bean
     @Order(1)
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
-//        return http.build();
-//    }
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http)
             throws Exception {
         OAuth2AuthorizationServerConfigurer authorizationServerConfigurer =
