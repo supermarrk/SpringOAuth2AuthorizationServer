@@ -1,36 +1,54 @@
 server:
   port: 9000
+  error:
+    include-message: always
+    include-stacktrace: always
 
 logging:
   level:
     org.springframework.security: trace
 
 spring:
-  security:
-    user:
-      name: user
-      password: password
-    oauth2:
-      authorizationserver:
-        client:
-          oidc-client:
-            registration:
-#              client-id: "oidc-client"
-              client-id: "client-id"
-              client-secret: "{noop}secret"
-              client-authentication-methods:
-                - "client_secret_basic"
-              authorization-grant-types:
-                - "authorization_code"
-                - "refresh_token"
-              redirect-uris:
-                - "http://127.0.0.1:8080/login/oauth2/code/oidc-client"
-                - "http://localhost:8080/login/oauth2/code/custom"
-                - "https://oauthdebugger.com/debug"
-              post-logout-redirect-uris:
-                - "http://127.0.0.1:8080/"
-              scopes:
-                - "openid"
-                - "profile"
-                - "read"
-            require-authorization-consent: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/authserverdb
+    username: root
+    password: secret
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+#    hibernate:
+#      ddl-auto: update     # or "validate", "create", "create-drop"
+#    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+  # Optional: for time zone handling
+  jackson:
+    time-zone: Asia/Manila
+#  security:
+#    user:
+#      name: user
+#      password: password
+#    oauth2:
+#      authorizationserver:
+#        client:
+#          oidc-client:
+#            registration:
+##              client-id: "oidc-client"
+#              client-id: "client-id"
+#              client-secret: "{noop}secret"
+#              client-authentication-methods:
+#                - "client_secret_basic"
+#              authorization-grant-types:
+#                - "authorization_code"
+#                - "refresh_token"
+#              redirect-uris:
+#                - "http://127.0.0.1:8080/login/oauth2/code/oidc-client"
+#                - "http://localhost:8080/login/oauth2/code/custom"
+#                - "https://oauthdebugger.com/debug"
+#              post-logout-redirect-uris:
+#                - "http://127.0.0.1:8080/"
+#              scopes:
+#                - "openid"
+#                - "profile"
+#                - "read"
+#            require-authorization-consent: true
